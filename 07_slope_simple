@@ -1,0 +1,15 @@
+x = int(input("Enter the value of x: "))
+
+y = int(input("Enter the value of y: "))
+
+point1 = (x, y)
+
+a = int(input("Enter the value of a: "))
+
+b = int(input("Enter the value of b: "))
+
+point2 = (a, b)
+
+slope = (y - b) / (x - a) if x != a else "undefined"
+
+print("The slope of the line connecting the two points is:", slope)
