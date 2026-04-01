@@ -1,0 +1,16 @@
+def side_length():
+    while True:
+        try:
+            side = float(input("Enter a side lenth of the square: "))
+            if side <= 0:
+                print("Enter a positive number.")
+                continue
+            return side
+        except ValueError:
+            print("Invalid input. Only enter numbers.")
+
+def area_of_square(side):
+
+    return side ** 2
+
+print("The area of the square is:", area_of_square(side_length()))
