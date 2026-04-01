@@ -1,0 +1,4 @@
+x = int(input("Enter a value: "))
+y = int(input("Enter another value: "))
+quotient = x / y
+print("The quotient of", x, "and", y, "is", quotient)
