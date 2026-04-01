@@ -1,0 +1,6 @@
+x = int(input("Enter a value: "))
+
+y = int(input("Enter another value: "))
+
+product = x * y
+print("The product of", x, "and", y, "is", product)
