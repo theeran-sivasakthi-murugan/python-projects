@@ -1,0 +1,64 @@
+import math
+
+def get_numbers():
+    while True:
+        try:
+            mass = int(input("Enter the mass (in kilograms): "))
+            acceleration = int(input("Enter the acceleration (in meters per second squared): "))
+            if mass < 0:
+                print("Mass cannot be negative. Please enter a non-negative value.")
+                continue
+            if mass == 0:
+                print("Mass cannot be zero. Please enter a positive value.")
+                continue
+            return mass, acceleration
+        except ValueError:
+            print("Invalid input. Enter numeric values for mass and acceleration.")
+
+def calculate_force(mass, acceleration):
+    return mass * acceleration
+
+def displacement():
+    while True:
+        try:
+            initial_velocity = int(input("Enter the inital velocity (in meters per second): "))
+            time = int(input("Enter the time (in seconds): "))
+            return initial_velocity, time
+        except ValueError:
+            print("Invalid input. Enter numeric values for initial velocity and time.")
+        
+        
+
+def calculate_displacement(initial_velocity, time, acceleration):
+    if acceleration == 0:
+        return initial_velocity * time
+    else:
+        return initial_velocity * time + 0.5 * acceleration * time ** 2
+
+def angle_between_force_and_motion():
+    while True:
+        try:
+            force_angle = int(input("Enter the value of the angle between the force and the motion (in degrees): "))
+            return force_angle
+        except ValueError:
+            print("Invalid input. Enter a numeric value for the angle.")
+
+def calculate_work(force, displacement, angle):
+    angle_radians = math.radians(angle)
+    return force * displacement * math.cos(angle_radians)
+
+def main():
+    mass, acceleration = get_numbers()
+    force = calculate_force(mass, acceleration)
+    print(f"The force is: {force} Newtons")
+    initial_velocity, time = displacement()
+    displacement_value = calculate_displacement(initial_velocity, time, acceleration)
+    print(f"The displacement is: {displacement_value} meters")
+    angle = angle_between_force_and_motion()
+    work = calculate_work(force, displacement_value, angle)
+    print(f"The work done is: {work} Joules")
+
+
+if __name__ == "__main__":
+    print("Work Calculator")
+    main()
