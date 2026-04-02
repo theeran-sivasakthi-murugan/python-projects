@@ -1,0 +1,27 @@
+def get_number(prompt):
+    while True:
+        try:
+            return int(input(prompt))
+        except ValueError:
+            print("Please enter a valid number.")
+
+def slope(x, y, a, b):
+    return (y - b) / (x - a) if x != a else "undefined"
+
+#input
+
+x = get_number("Enter the x-coordinate of the point: ")
+
+y = get_number("Enter the y-coordinate of the point: ")
+
+point1 = (x, y)
+
+a = get_number("Enter the x-coordinate of the second point: ")
+
+b = get_number("Enter the y-coordinate of the second point: ")
+
+point2 = (a, b)
+
+s = slope(x, y, a, b)
+
+print("The slope of the line connecting the two points is:", s)
