@@ -1,0 +1,42 @@
+def get_numbers():
+    while True:
+        try:
+            data = input("Enter the numbers separated by spaces: ")
+            numbers = [float(x) for x in data.split()]
+            if len(numbers) == 0:
+                print("Please enter at least one number.")
+                continue
+            return numbers
+        except ValueError:
+            print("Invalid input. Only enter numbers.")
+
+def median(numbers):
+    sorted_numbers = sorted(numbers)
+    n = len(sorted_numbers)
+    mid = n // 2
+
+    if n % 2 == 1:
+        return sorted_numbers[mid]
+    else:
+        return (sorted_numbers[mid - 1] + sorted_numbers[mid]) / 2
+    
+
+def quartiles(numbers):
+
+    sorted_numbers = sorted(numbers)
+    n = len(sorted_numbers)
+    mid = n // 2
+
+    if n % 2 == 0:
+        lower_half = sorted_numbers[:mid]
+        upper_half = sorted_numbers[mid:]
+    else:
+        lower_half = sorted_numbers[:mid]
+        upper_half = sorted_numbers[mid + 1:]
+
+    q1 = median(lower_half)
+    q3 = median(upper_half)
+
+    return q1, q3
+
+print("Quartiles:", quartiles(get_numbers())) 
