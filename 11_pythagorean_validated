@@ -1,0 +1,23 @@
+import math
+
+def get_number (prompt):
+
+    while True:
+        try:
+            return float(input(prompt))
+        except ValueError:
+            print("Enter a valid number.")
+
+
+def pythagorean(a, b):
+    return math.sqrt(a ** 2 + b ** 2)
+
+#input
+side_a = get_number("Enter the length of side a: ")
+side_b = get_number("Enter the length of side b: ")
+
+#calculate hypotenuse
+hypotenuse = pythagorean(side_a, side_b)
+
+#print result
+print(f"The side length of the hypotenuse is: {hypotenuse:.2f}")
