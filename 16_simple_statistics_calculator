@@ -1,0 +1,122 @@
+def get_numbers():
+    while True:
+        try:
+            data = input("Enter the numbers separated by spaces: ")
+            nums = [float(x) for x in data.split()]
+            if len(nums) == 0:
+                print("Please enter at least one number.")
+                continue
+            return nums
+        except ValueError:
+            print("Invalid input. Only enter numbers.")
+
+def mean(nums):
+    return sum(nums) / len(nums)
+
+def median(nums):
+    nums_sorted = sorted(nums)
+    n = len(nums_sorted)
+    mid = n // 2
+    if n % 2 == 1:
+        return nums_sorted[mid]
+    return (nums_sorted[mid - 1] + nums_sorted[mid]) / 2
+
+def quartiles(nums):
+    nums_sorted = sorted(nums)
+    n = len(nums_sorted)
+    mid = n // 2
+
+    # split upper and lower halves
+
+    if n % 2 == 0:
+        lower_half = nums_sorted[:mid]
+        upper_half = nums_sorted[mid:]
+    else:
+        lower_half = nums_sorted[:mid]
+        upper_half = nums_sorted[mid + 1:]
+
+    q1 = median(lower_half)
+    q3 = median(upper_half)
+
+    return q1, q3
+
+def interquartile_range(nums):
+    q1, q3 = quartiles(nums)
+    return q3 - q1
+    
+def mode(nums):
+    freq = {}
+    for n in nums:
+        freq[n] = freq.get(n, 0) + 1
+    max_freq = max(freq.values())
+    
+    max_count = max(freq.values())
+    modes = [num for num, count in freq.items() if count == max_count]
+
+    if len(modes) == 1:
+        return modes[0]
+    else:
+        return "no unique mode"
+    
+def minimum(nums):
+    return min(nums)
+
+def maximum(nums):
+    return max(nums)
+
+def count(nums):
+    return len(nums)
+
+def sum_nums(nums):
+    return sum(nums)
+    
+def data_range(nums):
+    return max(nums) - min(nums)
+
+def variance(nums):
+    mean_value = sum(nums) / (len(nums))
+    squared_diffs = [(x - mean_value) ** 2 for x in nums]
+    return sum(squared_diffs) / (len(nums) - 1)
+
+def std_dev(nums):
+    return variance(nums) ** 0.5
+
+def outliers(nums):
+    q1, q3 = quartiles(nums)
+    iqr = q3 - q1
+    lower_bound_outliers = q1 - 1.5 * iqr
+    upper_bound_outliers = q3 + 1.5 * iqr
+    return [x for x in nums if x < lower_bound_outliers or x > upper_bound_outliers]
+
+def simple_stats(nums):
+    stats = {}
+
+    stats["mean"] = f"{mean(nums):.2f}"
+    stats["median"] = f"{median(nums):.2f}"
+
+    m = mode(nums)
+    stats["mode"] = m if isinstance(m, str) else f"{m:.2f}"
+
+    stats["range"] = f"{data_range(nums):.2f}"
+    stats["variance"] = f"{variance(nums):.2f}"
+    stats["std_dev"] = f"{std_dev(nums):.2f}"
+    stats["minimum"] = f"{minimum(nums):.2f}"
+    stats["maximum"] = f"{maximum(nums):.2f}"
+    stats["count"] = count(nums)
+    stats["sum"] = f"{sum_nums(nums):.2f}"
+
+    q1, q3 = quartiles(nums)
+    stats["q1"] = f"{q1:.2f}"
+    stats["q3"] = f"{q3:.2f}"
+    stats["interquartile Range"] = f"{interquartile_range(nums):.2f}"
+    stats["outliers"] = outliers(nums)
+    return stats
+
+if __name__ == "__main__":
+    print("Simple Statistics Calculator")
+    numbers = get_numbers()
+    stats = simple_stats(numbers)
+    print("\nResults:")
+
+    for key, value in stats.items():
+        print(f"{key.capitalize()}: {value}")
