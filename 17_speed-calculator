@@ -1,0 +1,22 @@
+def get_numbers():
+    while True:
+        try:
+            distance = float(input("Enter the distance in meters: "))
+            time = float(input("Enter the time in seconds: "))
+            return distance, time
+        except ValueError:
+            print("Invalid input. Enter numeric values for distance and time.")
+
+def calculate_speed(distance, time):
+    if time > 0:
+        speed = distance / time
+        return speed
+    else:
+        print("Time must be greater than zero.")
+        return None
+    
+if __name__ == "__main__":
+    distance, time = get_numbers()
+    speed = calculate_speed(distance, time)
+    if speed is not None:
+        print(f"The speed is {speed} meters per second.")
