@@ -1,0 +1,37 @@
+import math
+
+def radius():
+    while True:
+        try:
+            r = float(input("Enter the radius of the circle: "))
+            if r <= 0:
+                print("Enter a positive number.")
+                continue
+            return r
+        except ValueError:
+            print("Invalid input. Only enter numbers.")
+
+def diameter(r):
+    return 2 * r
+
+def circle_area(r):
+    return math.pi * r ** 2
+
+def circle_circumference(r):
+    return 2 * math.pi * r
+
+def circle_calculator():
+    r = radius()
+    area = circle_area(r)
+    circumference = circle_circumference(r)
+    d = diameter(r)
+
+    return r, area, circumference, d
+
+
+if __name__ == "__main__":
+    print("Circle Calculator")
+    results = circle_calculator()
+
+    for name, value in zip(["Radius", "Area", "Circumference", "Diameter"], results):
+        print(f"{name}: {value:.2f}")
