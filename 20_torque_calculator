@@ -1,0 +1,27 @@
+import math
+
+def get_values():
+    while True:
+        try:
+            force = float(input("Enter the force applied (in Newtons): "))
+            angle_force_applied = float(input("Enter the angle of the applied force (in degrees): "))
+            return force, angle_force_applied
+        except ValueError:
+            print("Invalid input. Enter a valid number.")
+
+def angle_to_radians(angle):
+    return math.radians(angle)
+
+def calculate_torque_general(force, angle):
+    angle_rad = angle_to_radians(angle)
+    torque = force * math.sin(angle_rad)
+    return torque
+
+def main():
+    force, angle_force_applied = get_values()
+    torque = calculate_torque_general(force, angle_force_applied)
+    print(f"\nTorque: {torque:.2f} Nm")
+
+if __name__ == "__main__":
+    print("Torque Calculator")
+    main()
